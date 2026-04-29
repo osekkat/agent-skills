@@ -1,5 +1,7 @@
 # agent-skills
 
+*By [Oussama Sekkat](https://x.com/osekkat)*
+
 A growing collection of [Claude Code](https://www.anthropic.com/claude-code) skills, distilled from real engineering work.
 
 These are *Claude Code* skills, not [claude.ai skills](https://support.claude.com/en/articles/12512198-how-to-create-custom-skills) — different format, different install path. Each skill is a directory with a `SKILL.md` (YAML frontmatter + markdown body) plus a `references/` folder of supporting docs the agent loads on demand.
