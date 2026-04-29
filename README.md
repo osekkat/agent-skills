@@ -24,7 +24,7 @@ Three of the 47 [operator patterns](./skills/ios-app-store-submission/references
 
 **Prevention:** Pre-Phase-2 lane: MD5-hash the 1024 icon and fail if it matches the known Flutter default.
 
-**Source:** First submission of a Flutter travel app.
+**Source:** First submission of a Flutter project, 2026-04.
 
 ### OP-30: Apple closes a "version train" after approval — TestFlight is not exempt
 
@@ -36,7 +36,7 @@ Three of the 47 [operator patterns](./skills/ios-app-store-submission/references
 
 **Prevention:** Phase 0 pre-flight queries ASC for the latest approved version and refuses to start a build at the same or lower number.
 
-**Source:** Mid-cycle version bump on a shipped Expo / EAS app.
+**Source:** Mid-cycle version bump on a shipped Expo / EAS project, 2026-04.
 
 ### OP-22: Screenshot upload is a 3-step protocol, not a single POST
 
@@ -48,7 +48,7 @@ Three of the 47 [operator patterns](./skills/ios-app-store-submission/references
 
 **Prevention:** Wrap the 3-step in a helper. Document as the canonical screenshot upload pattern alongside the `deliver` and web-UI alternatives.
 
-**Source:** ASC REST API integration on the same Flutter app.
+**Source:** ASC REST API integration on the same Flutter project, 2026-04.
 
 For the rest, see the [full catalog](./skills/ios-app-store-submission/references/OPERATOR-PATTERNS.md).
 

@@ -379,7 +379,7 @@ Why log only state *changes*: per-poll logging produces noise. Only emit when so
 
 Why 45s poll interval: ASC rate limits are generous, but every-5s polling is wasteful for a process that takes minutes. 30–60s strikes the right balance.
 
-Sample successful run (Flutter 62MB IPA, travelguide build 3, 2026-04-29):
+Sample successful run (Flutter 62MB IPA, build 3, 2026-04-29):
 ```
 [11:21:51] build 3: not yet visible in ASC
 [11:25:40] build 3: VALID  uploaded=2026-04-29T03:21:28-07:00  expired=False

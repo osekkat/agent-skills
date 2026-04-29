@@ -40,7 +40,7 @@ Then `dart run flutter_launcher_icons` and rebuild.
 
 **Prevention:** Before Phase 2 (Archive), MD5-hash the 1024 icon and compare against the known Flutter default hash. If it matches, fail the lane. Add to `references/FRAMEWORK-BUILDS.md` Flutter section.
 
-**Source:** 2026-04-28, travelguide first submission.
+**Source:** 2026-04-28, Flutter first submission.
 
 ---
 
@@ -54,7 +54,7 @@ Then `dart run flutter_launcher_icons` and rebuild.
 
 **Prevention:** When evaluating Flutter's launch-image warning, first check `LaunchScreen.storyboard` for any `image="LaunchImage"` reference. If absent, the warning is cosmetic.
 
-**Source:** 2026-04-28, travelguide.
+**Source:** 2026-04-28, Flutter project.
 
 ---
 
@@ -74,7 +74,7 @@ Without all four, the file isn't included in the bundled `.app` and ASC sees no 
 
 **Prevention:** After creating `PrivacyInfo.xcprivacy`, build the IPA and verify with `unzip -l <ipa> | grep PrivacyInfo` that it's actually inside the app bundle. Add to `references/PRIVACY-MANIFEST.md`.
 
-**Source:** 2026-04-28, travelguide.
+**Source:** 2026-04-28, Flutter project.
 
 ---
 
@@ -103,7 +103,7 @@ Verify: `security find-identity -v -p codesigning` should now show `Apple Distri
 
 **Prevention:** Phase 0 pre-flight should explicitly check for `Apple Distribution` in `security find-identity -v -p codesigning` output and refuse to start Phase 2 if missing. Don't trust that cloud signing will work twice in a row.
 
-**Source:** 2026-04-28, travelguide.
+**Source:** 2026-04-28, Flutter project.
 
 ---
 
@@ -126,7 +126,7 @@ error: exportArchive No signing certificate "iOS Distribution" found
 
 **Prevention:** When generating ASC API keys for fastlane/match cloud signing, default to **Admin**. For pure upload pipelines, **App Manager** is fine. Document the role requirement next to the API key generation step.
 
-**Source:** 2026-04-28, travelguide.
+**Source:** 2026-04-28, Flutter project.
 
 ---
 
@@ -155,7 +155,7 @@ Xcode will regenerate the provisioning profile to bind the new cert. Subsequent 
 
 **Prevention:** When introducing a new Distribution cert into a project that previously used cloud signing, expect the provisioning profile to need regeneration. Always pair `-allowProvisioningUpdates` with a logged-in Xcode UI account on the first export after a cert change.
 
-**Source:** 2026-04-28, travelguide.
+**Source:** 2026-04-28, Flutter project.
 
 ---
 
@@ -213,7 +213,7 @@ Solid background color is App-Review-safe and compiles reliably across Xcode ver
 
 **Prevention:** When hand-writing launch screens for cross-Xcode compatibility, stay in the legacy format (`toolsVersion="12121"`, no `<device>` tag, no `useTraitCollections`). For richer designs, open Xcode and edit the storyboard in IB so the format matches the current Xcode's expectations.
 
-**Source:** 2026-04-28, travelguide.
+**Source:** 2026-04-28, Flutter project.
 
 ---
 
@@ -246,7 +246,7 @@ Rebuild + reupload (bump build number). The warning disappears.
 
 **Prevention:** When integrating any SDK that touches a sensitive API category, defensively add *all* purpose strings for that category, not just the ones your code calls. Common categories: location (always + whenInUse + temporaryUsage), camera, microphone, photo library (read + add), contacts, calendar, reminders, motion, Bluetooth, local network, tracking (ATT). Add to `references/ITMS-ERRORS.md`.
 
-**Source:** 2026-04-28, travelguide.
+**Source:** 2026-04-28, Flutter project.
 
 ---
 
@@ -277,7 +277,7 @@ md5 ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-1024x1024@1x.png
 ```
 and visually inspect the 1024 icon (e.g. via `qlmanage -p`).
 
-**Source:** 2026-04-28, travelguide.
+**Source:** 2026-04-28, Flutter project.
 
 ---
 
@@ -295,7 +295,7 @@ If you're stuck with a pre-rounded source and can't redesign:
 
 **Prevention:** Specify "edge-to-edge artwork, no rounded corners, no alpha" when briefing the designer. Reference Apple's [Human Interface Guidelines: App Icons](https://developer.apple.com/design/human-interface-guidelines/app-icons).
 
-**Source:** 2026-04-28, travelguide.
+**Source:** 2026-04-28, Flutter project.
 
 ---
 
@@ -316,7 +316,7 @@ You should see `"1024x1024 index:11 idiom:marketing"`.
 
 **Prevention:** Don't escalate when the placeholder appears during processing. Check `assetutil` first.
 
-**Source:** 2026-04-28, travelguide.
+**Source:** 2026-04-28, Flutter project.
 
 ---
 
@@ -332,7 +332,7 @@ You should see `"1024x1024 index:11 idiom:marketing"`.
 
 **Prevention:** Always click the warning triangle and address each warning before submitting to App Review. The 10-minute round-trip of fixing locally is much shorter than a review rejection round-trip (1–2 days).
 
-**Source:** 2026-04-28, travelguide.
+**Source:** 2026-04-28, Flutter project.
 
 ---
 
@@ -348,7 +348,7 @@ You should see `"1024x1024 index:11 idiom:marketing"`.
 
 **Prevention:** When walking users through the pipeline, use precise language: "build is ready" vs "submission queued for review" vs "in review" vs "approved". The skill router already distinguishes Phase 5 (TestFlight verification) from Phase 7 (Submit for Review) — keep them mentally distinct.
 
-**Source:** 2026-04-28, travelguide.
+**Source:** 2026-04-28, Flutter project.
 
 ---
 
@@ -364,7 +364,7 @@ You should see `"1024x1024 index:11 idiom:marketing"`.
 
 **Prevention:** When creating the App record in ASC, set primary locale to your most-supported language (usually English). If the app was created with a different primary, fix it before drafting metadata.
 
-**Source:** 2026-04-28, travelguide (created with fr-FR primary).
+**Source:** 2026-04-28, Flutter project (created with fr-FR primary).
 
 ---
 
@@ -393,7 +393,7 @@ else:
 
 **Prevention:** Treat ASC localization creation as racy. Always re-discover state immediately before mutating.
 
-**Source:** 2026-04-28, travelguide.
+**Source:** 2026-04-28, Flutter project.
 
 ---
 
@@ -412,7 +412,7 @@ HTTP 409 STATE_ERROR
 
 **Prevention:** In your localization-fill code, conditionally include `whatsNew` based on whether this is `first-submission` vs `update` mode.
 
-**Source:** 2026-04-28, travelguide.
+**Source:** 2026-04-28, Flutter project.
 
 ---
 
@@ -462,7 +462,7 @@ attrs = {
 
 **Prevention:** Don't hardcode the field list. Iterate against the API: PATCH with what you think is correct, parse `ENTITY_ERROR.ATTRIBUTE.REQUIRED` errors, add the missing fields with sensible defaults, retry. Better: skip API for age rating and use the ASC web UI questionnaire (5 click-through) which always has the current schema.
 
-**Source:** 2026-04-28, travelguide.
+**Source:** 2026-04-28, Flutter project.
 
 ---
 
@@ -490,7 +490,7 @@ Alternatively, fetch the parent `appInfos/{id}/ageRatingDeclaration` (GET on the
 
 **Prevention:** Maintain a local snapshot of the current age rating field set in this skill (see OP-17 for the snapshot). Update when Apple expands.
 
-**Source:** 2026-04-28, travelguide.
+**Source:** 2026-04-28, Flutter project.
 
 ---
 
@@ -504,7 +504,7 @@ Alternatively, fetch the parent `appInfos/{id}/ageRatingDeclaration` (GET on the
 
 **Prevention:** Use 2-component versions (`1.0`, `1.1`, `2.0`) for the App Store-facing version string. Use 3-component versions internally if needed (Flutter's `version: 1.0.0+1` maps cleanly: 1.0.0 → CFBundleShortVersionString, 1 → CFBundleVersion).
 
-**Source:** 2026-04-28, travelguide.
+**Source:** 2026-04-28, Flutter project.
 
 ---
 
@@ -525,7 +525,7 @@ The same `sort=` works on `/v1/builds`. Inconsistent.
 
 **Prevention:** When building API helpers, parameterize sort and gate it per-endpoint. Or just always omit and re-sort client-side from the response data.
 
-**Source:** 2026-04-28, travelguide.
+**Source:** 2026-04-28, Flutter project.
 
 ---
 
@@ -553,7 +553,7 @@ Known iOS screenshot display types (verify periodically — Apple drops deprecat
 - `APP_IPAD_PRO_3GEN_129` — 12.9" iPad Pro
 - `APP_IPAD_PRO_3GEN_11` — 11" iPad Pro
 
-**Source:** 2026-04-28, travelguide.
+**Source:** 2026-04-28, Flutter project.
 
 ---
 
@@ -576,7 +576,7 @@ Files <50MB usually return a single upload operation; larger files may chunk acr
 
 **Prevention:** Wrap the 3-step in a helper and document the gotcha clearly. Add to `references/DELIVER-AND-METADATA.md` as the canonical screenshot upload pattern.
 
-**Source:** 2026-04-28, travelguide.
+**Source:** 2026-04-28, Flutter project.
 
 ---
 
@@ -600,7 +600,7 @@ If using PyJWT (`pyjwt[crypto]`), it handles this internally — pass the .p8 co
 
 **Prevention:** Prefer PyJWT for JWT signing; only fall back to manual signing when PyJWT isn't available. Document the raw-vs-DER trap loudly.
 
-**Source:** 2026-04-28, travelguide.
+**Source:** 2026-04-28, Flutter project.
 
 ---
 
@@ -625,7 +625,7 @@ Now ASC stops prompting. Builds go straight from Processing → Ready to Submit.
 
 **Prevention:** Add this to every project's `Info.plist` early. Add to PRE-FLIGHT.md checklist.
 
-**Source:** 2026-04-28, travelguide.
+**Source:** 2026-04-28, Flutter project.
 
 ---
 
@@ -653,7 +653,7 @@ Note: `assetutil` lives under `Platforms/iPhoneOS.platform/usr/bin/`, not the st
 
 **Prevention:** Add `assetutil --info` check to a post-build verification step. Failing to ship the 1024 marketing icon results in App Store listing showing a placeholder forever.
 
-**Source:** 2026-04-28, travelguide.
+**Source:** 2026-04-28, Flutter project.
 
 ---
 
@@ -670,7 +670,7 @@ Note: `assetutil` lives under `Platforms/iPhoneOS.platform/usr/bin/`, not the st
 
 **Prevention:** Document API key role requirements explicitly: App Manager for upload/metadata, Admin for cert/profile/cloud signing.
 
-**Source:** 2026-04-28, travelguide (inferred from OP-5 pattern).
+**Source:** 2026-04-28, Flutter project (inferred from OP-5 pattern).
 
 ---
 
@@ -692,7 +692,7 @@ codesign -dvvv /tmp/check/Payload/Runner.app | grep -E "Authority|Identifier="
 unzip -p path/to.ipa Payload/Runner.app/embedded.mobileprovision | security cms -D | grep -A1 "get-task-allow\|Name"
 ```
 
-**Source:** 2026-04-28, travelguide.
+**Source:** 2026-04-28, Flutter project.
 
 ---
 
@@ -726,7 +726,7 @@ Re-run `eas submit --platform=ios --latest --non-interactive`. Now succeeds.
 
 **Prevention:** When running `eas submit:configure` or after first successful interactive submit, write the discovered `ascAppId` back to `eas.json` immediately so subsequent CI runs work non-interactively. Treat the missing-`ascAppId` failure as a Phase 0 pre-flight bug, not a runtime issue.
 
-**Source:** 2026-04-29, eventapp (eventapp) update submission.
+**Source:** 2026-04-29, Expo / EAS update submission.
 
 ---
 
@@ -760,7 +760,7 @@ Expand the "Upload to App Store Connect" job. Scroll to the bottom — `Errors:`
 
 If you need to programmatically fetch the submission log (e.g. CI), there's no first-class CLI command in eas-cli ≤18.8.x — the dashboard is the only sanctioned reading interface. Workarounds: scrape the dashboard HTML, or run `eas submit` interactively in CI and tee output (limited utility — same generic message).
 
-**Source:** 2026-04-29, eventapp (eventapp) update submission. Tested with eas-cli 16.28.0.
+**Source:** 2026-04-29, Expo / EAS update submission. Tested with eas-cli 16.28.0.
 
 ---
 
@@ -819,7 +819,7 @@ Or simpler: every time you ship a release, immediately bump the version locally 
 
 **For EAS users specifically:** the rejection happens at the Apple side, after EAS has already uploaded. The local `eas submit` output shows only "Something went wrong" (OP-29). The actual ITMS codes appear at the submission URL.
 
-**Source:** 2026-04-29, eventapp (eventapp). Version 2.5.0 was already live on the App Store; build 41 of the same version was rejected at upload despite intent for TestFlight only. Resolved by bumping to 2.5.1.
+**Source:** 2026-04-29, Expo / EAS project. Version 2.5.0 was already live on the App Store; build 41 of the same version was rejected at upload despite intent for TestFlight only. Resolved by bumping to 2.5.1.
 
 ---
 
@@ -855,7 +855,7 @@ done
 
 If you must use bash semantics, prefix with `#!/bin/bash` and ensure the script is invoked through bash (not sourced under zsh).
 
-**Source:** 2026-04-29, eventapp EAS build polling. First iteration of polling loop failed; renamed `status` → `s`, worked.
+**Source:** 2026-04-29, EAS build polling. First iteration of polling loop failed; renamed `status` → `s`, worked.
 
 ---
 
@@ -885,7 +885,7 @@ That's exactly 30 days from `createdAt`.
   Local IPAs don't expire. You can also re-upload them via `eas submit --path <local.ipa>` if the build's still valid against ASC's view of the world (but the version-train rules from OP-30 still apply).
 - **For long-term archival** (regulatory, audit): download both IPA and dSYM bundle; commit the dSYM hash to your release notes for symbol-server lookups later.
 
-**Source:** 2026-04-29, eventapp. Build 39 (v2.5.0) had `completedAt: 2026-01-12`, `expirationDate: 2026-02-11`, and was no longer downloadable on 2026-04-29 — necessitating a rebuild.
+**Source:** 2026-04-29, Expo / EAS project. Build 39 (v2.5.0) had `completedAt: 2026-01-12`, `expirationDate: 2026-02-11`, and was no longer downloadable on 2026-04-29 — necessitating a rebuild.
 
 ---
 
@@ -918,7 +918,7 @@ Then `eas build` and `eas update --channel production` once to seed the new runt
 
 When auditing an Expo project for OTA strategy: `grep runtimeVersion app.config.js`. If you see `policy: "appVersion"`, check `git log` for how often `version` is bumped — frequent bumps mean lots of OTA channel drift.
 
-**Source:** 2026-04-29, eventapp. Bumping 2.5.0 → 2.5.1 for the version-train fix (OP-30) was noted to also break the OTA channel for any 2.5.0 clients still in TestFlight.
+**Source:** 2026-04-29, Expo / EAS project. Bumping 2.5.0 → 2.5.1 for the version-train fix (OP-30) was noted to also break the OTA channel for any 2.5.0 clients still in TestFlight.
 
 ---
 
@@ -963,7 +963,7 @@ Alternatives if uv is unavailable:
 
 **Prevention:** Default to `uv tool run --with <deps> python` for all ASC API scripts in the skill. Don't write `pip install` instructions and assume macOS users can run them.
 
-**Source:** 2026-04-29, travelguide TestFlight upload session — needed PyJWT to query `/v1/builds` after `xcrun altool --upload-app`. System Python blocked pip; `uv tool run` ran the script in ~12s end-to-end including dep install.
+**Source:** 2026-04-29, Flutter TestFlight upload session — needed PyJWT to query `/v1/builds` after `xcrun altool --upload-app`. System Python blocked pip; `uv tool run` ran the script in ~12s end-to-end including dep install.
 
 ---
 
@@ -1005,7 +1005,7 @@ Use `limit=10` (not `limit=1`) so a parallel upload of a different version doesn
 - Log state transitions only when they change, not every poll. Reduces noise.
 - 45s poll interval is a good balance: ASC rate limit is generous, but every-5s polling is wasteful for a process that takes minutes.
 
-**Source:** 2026-04-29, travelguide build 3 (Flutter, 62MB IPA). Upload completed 11:20:13 local. First poll at 11:21:51 (1m38s after upload): not yet visible. Second poll at 11:25:40 (5m27s after upload): VALID, expired=False. Total upload→VALID was ~5.5 min, with `PROCESSING` never observed.
+**Source:** 2026-04-29, Flutter project (build 3, 62MB IPA). Upload completed 11:20:13 local. First poll at 11:21:51 (1m38s after upload): not yet visible. Second poll at 11:25:40 (5m27s after upload): VALID, expired=False. Total upload→VALID was ~5.5 min, with `PROCESSING` never observed.
 
 ---
 
@@ -1021,8 +1021,8 @@ Use `limit=10` (not `limit=1`) so a parallel upload of a different version doesn
 You read `ios/Runner.xcodeproj/project.pbxproj` and see *two* matches:
 
 ```
-PRODUCT_BUNDLE_IDENTIFIER = com.example.travelguide;
-PRODUCT_BUNDLE_IDENTIFIER = com.example.travelguide.RunnerTests;
+PRODUCT_BUNDLE_IDENTIFIER = com.example.app;
+PRODUCT_BUNDLE_IDENTIFIER = com.example.app.RunnerTests;
 ```
 
 Which value actually shipped in the IPA? You can't tell from the source alone.
@@ -1032,14 +1032,14 @@ Which value actually shipped in the IPA? You can't tell from the source alone.
 **Fix:** Always verify the actual bundle ID *inside* the IPA before upload. The IPA is a zip; the runtime `Info.plist` lives at `Payload/<App>.app/Info.plist`:
 
 ```bash
-unzip -p build/ios/ipa/travelguide.ipa "Payload/Runner.app/Info.plist" | \
+unzip -p build/ios/ipa/app.ipa "Payload/Runner.app/Info.plist" | \
   plutil -p - | \
   grep -E "CFBundleIdentifier|CFBundleVersion|CFBundleShortVersion|MinimumOSVersion"
 ```
 
 Output:
 ```
-  "CFBundleIdentifier" => "com.example.travelguide"
+  "CFBundleIdentifier" => "com.example.app"
   "CFBundleShortVersionString" => "1.0.0"
   "CFBundleVersion" => "3"
   "MinimumOSVersion" => "13.0"
@@ -1060,7 +1060,7 @@ bundle_id = sh("unzip -p #{ipa} 'Payload/Runner.app/Info.plist' | plutil -extrac
 UI.user_error!("Wrong bundle id #{bundle_id}") unless bundle_id == "com.example.app"
 ```
 
-**Source:** 2026-04-29, travelguide. Verified `com.example.travelguide` was the actual baked-in bundle ID (not the `.RunnerTests` sibling) before uploading.
+**Source:** 2026-04-29, Flutter project. Verified `com.example.app` was the actual baked-in bundle ID (not the `.RunnerTests` sibling) before uploading.
 
 ---
 
@@ -1105,7 +1105,7 @@ Pre-reqs that survive across submissions (do once):
 - Screenshot generation (`fastlane snapshot`)
 - CI integration without Apple ID 2FA
 
-**Source:** 2026-04-29, travelguide first TestFlight submission. Total wall-clock from "IPA is here" to "build is VALID in TestFlight": ~7 minutes (90s validate + 4s upload + 5.5min processing). fastlane was never installed.
+**Source:** 2026-04-29, Flutter first TestFlight submission. Total wall-clock from "IPA is here" to "build is VALID in TestFlight": ~7 minutes (90s validate + 4s upload + 5.5min processing). fastlane was never installed.
 
 ---
 
@@ -1144,7 +1144,7 @@ If you have a long-lived `ExportOptions.plist` with `method: app-store`, leave i
 
 **Prevention:** When generating ExportOptions.plist by hand or via a template, default to `app-store-connect`. When reviewing fastlane configs (`gym_options.export_method`) or Flutter `--export-method` flags, accept both spellings as valid.
 
-**Source:** 2026-04-29, travelguide. Flutter wrote `method: app-store-connect` to `build/ios/ipa/ExportOptions.plist`; the IPA exported, validated, and uploaded successfully.
+**Source:** 2026-04-29, Flutter project. Flutter wrote `method: app-store-connect` to `build/ios/ipa/ExportOptions.plist`; the IPA exported, validated, and uploaded successfully.
 
 ---
 
@@ -1177,7 +1177,7 @@ For manual signing, add `PROVISIONING_PROFILE_SPECIFIER: "<profile-name>"` and `
 
 **Prevention:** When you see a `project.yml` at the repo root, treat the `.xcodeproj` as a generated artifact — like `Cargo.lock` or `node_modules`. All persistent project config goes through `project.yml`. Add `.xcodeproj/` to `.gitignore` if it isn't already (most XcodeGen projects do). Before archiving, always re-run `xcodegen generate` to be sure your local `.xcodeproj` matches `project.yml`.
 
-**Source:** 2026-04-29, cardstash/SwipeFlash first submission. Initial `project.yml` had no team config; `xcodebuild archive` failed until `DEVELOPMENT_TEAM` and `CODE_SIGN_STYLE` were added under `targets.SwiftApp.settings.base`.
+**Source:** 2026-04-29, native Swift / XcodeGen first submission. Initial `project.yml` had no team config; `xcodebuild archive` failed until `DEVELOPMENT_TEAM` and `CODE_SIGN_STYLE` were added under `targets.MyApp.settings.base`.
 
 ---
 
@@ -1217,7 +1217,7 @@ If the export succeeded with `method: app-store-connect` (or legacy `app-store`)
 
 **Prevention:** Read the archive log for *errors only*. The `Signing Identity:` line in archive output is informational; trust the export output and the embedded profile in the resulting IPA. Cross-reference with [OP-27](#op-27-first-archive-that-succeeds-with-cloud-signing-produces-ios-team-store-provisioning-profile-name).
 
-**Source:** 2026-04-29, cardstash/SwipeFlash first submission. Archive log showed `Apple Development: Jane Developer`; export with `app-store-connect` method correctly re-signed with `Apple Distribution: Acme Labs, LLC` and the IPA validated and uploaded clean.
+**Source:** 2026-04-29, native Swift / XcodeGen first submission. Archive log showed `Apple Development: Jane Developer`; export with `app-store-connect` method correctly re-signed with `Apple Distribution: Acme Labs, LLC` and the IPA validated and uploaded clean.
 
 ---
 
@@ -1266,7 +1266,7 @@ curl -H "Authorization: Bearer $JWT" \
 
 **Prevention:** When the skill or another doc says "register the bundle ID in developer.apple.com first," that step is now optional in modern Xcode (16.x / 26.x). Don't waste time on the portal UI for fresh bundle IDs — let xcodebuild handle it. Still worth verifying via API afterward to confirm the registration stuck.
 
-**Source:** 2026-04-29, cardstash/SwipeFlash first submission. Bundle ID `com.example.cardstash` (later renamed to `com.example.deckdrift`) was never explicitly registered; first archive auto-registered it. Confirmed via `GET /v1/bundleIds?filter[identifier]=...`.
+**Source:** 2026-04-29, native Swift / XcodeGen first submission. Bundle ID `com.example.app1` (later renamed to `com.example.app2`) was never explicitly registered; first archive auto-registered it. Confirmed via `GET /v1/bundleIds?filter[identifier]=...`.
 
 ---
 
@@ -1307,7 +1307,7 @@ This works but requires fastlane, which is heavier than the web-UI step for solo
 
 **Prevention:** Don't search for `POST /v1/apps` — it's not there. When designing release tooling, plan for the web UI hand-off on first submission and full automation on every subsequent release.
 
-**Source:** 2026-04-29, cardstash/SwipeFlash first submission. After confirming `GET /v1/apps?filter[bundleId]=com.example.cardstash` returned empty, considered scripting `POST /v1/apps`. Apple's API reference confirmed no such endpoint exists; user created the record via web UI in <2 min.
+**Source:** 2026-04-29, native Swift / XcodeGen first submission. After confirming `GET /v1/apps?filter[bundleId]=com.example.app1` returned empty, considered scripting `POST /v1/apps`. Apple's API reference confirmed no such endpoint exists; user created the record via web UI in <2 min.
 
 ---
 
@@ -1356,13 +1356,13 @@ The same lag applies to:
 
 Lag is normal; treat it as a state machine, not a binary "exists / doesn't exist."
 
-**Source:** 2026-04-29, cardstash/SwipeFlash first submission. Initial poll (<10s after web UI Create click) returned empty; ~45s later the record was visible.
+**Source:** 2026-04-29, native Swift / XcodeGen first submission. Initial poll (<10s after web UI Create click) returned empty; ~45s later the record was visible.
 
 ---
 
 ## OP-44: ASC App "Name" and `CFBundleDisplayName` are independent — match them anyway
 
-**Symptom:** App Store listing shows "SwipeFlash" but the home-screen icon under the app says "DeckDrift" because `CFBundleDisplayName` was set during archive before the user picked the final ASC name. Beta testers complain. You wonder if it'll get rejected.
+**Symptom:** App Store listing shows "Final Name" but the home-screen icon under the app says "Mid-flow Name" because `CFBundleDisplayName` was set during archive before the user picked the final ASC name. Beta testers complain. You wonder if it'll get rejected.
 
 **Root cause:** Two separate fields:
 - **ASC App Name** (`/v1/apps[].attributes.name`): what shows on the App Store listing, in search results, and on the App Store Connect dashboard. Editable in ASC at any time (subject to App Review approval on next submission).
@@ -1386,7 +1386,7 @@ Mid-flow rename workflow (encountered repeatedly with first-time submitters):
 
 **Prevention:** During Phase 0 / first-submission planning, lock the brand name *before* the user starts clicking around in ASC. If it changes mid-flow, expect a 2-minute rebuild cycle (re-archive → re-export → re-validate → re-upload). The cost is cheap; just don't promise the user a one-shot upload until the name is stable.
 
-**Source:** 2026-04-29, cardstash/SwipeFlash first submission. App started as "Card Stash", renamed to "DeckDrift" during ASC create-app, renamed to "SwipeFlash" before clicking Create. `CFBundleDisplayName` was updated and re-archived to keep the home-screen name aligned with the App Store listing.
+**Source:** 2026-04-29, native Swift / XcodeGen first submission. App started as "Working Title", renamed to "Mid-flow Name" during ASC create-app, renamed to "Final Name" before clicking Create. `CFBundleDisplayName` was updated and re-archived to keep the home-screen name aligned with the App Store listing.
 
 ---
 
@@ -1428,7 +1428,7 @@ builds = data.get("data", [])
 
 **Prevention:** Whenever an ASC API call has a "version" field, consult the schema to confirm whether it means build number or marketing version. The convention is consistent (`builds.version` = build number, `preReleaseVersion.version` = marketing version, `appStoreVersions.versionString` = marketing version) but the bare word "version" is ambiguous. Cache discovered schemas with a `last verified` date — see kernel axiom #10.
 
-**Source:** 2026-04-29, cardstash/SwipeFlash first submission. Initial poll used `filter[version]=1.0` (marketing version), returned empty. Fixed by combining `filter[preReleaseVersion.version]=1.0` + `filter[version]=1` (build number) — found the build immediately.
+**Source:** 2026-04-29, native Swift / XcodeGen first submission. Initial poll used `filter[version]=1.0` (marketing version), returned empty. Fixed by combining `filter[preReleaseVersion.version]=1.0` + `filter[version]=1` (build number) — found the build immediately.
 
 ---
 
@@ -1471,4 +1471,4 @@ echo "OK: $icon is 1024x1024 RGB without alpha"
 
 **Prevention:** Add the dimension+alpha check to the Phase 1 placeholder-asset audit. Catches three common rejection causes (wrong size, alpha channel, framework default icon — see [OP-1](#op-1) and [OP-25](#op-25)) in one pass. Don't pull in heavier tooling until you actually need it.
 
-**Source:** 2026-04-29, cardstash/SwipeFlash first submission. Source icon was 1254×1254 RGB with no alpha; `sips -z 1024 1024` produced a clean 1024×1024 marketing icon that compiled into `Assets.car` and shipped through validation without ITMS errors.
+**Source:** 2026-04-29, native Swift / XcodeGen first submission. Source icon was 1254×1254 RGB with no alpha; `sips -z 1024 1024` produced a clean 1024×1024 marketing icon that compiled into `Assets.car` and shipped through validation without ITMS errors.
